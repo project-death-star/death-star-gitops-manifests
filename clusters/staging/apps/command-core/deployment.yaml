@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: command-core-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: command-core
+  template:
+    metadata:
+      labels:
+        app: command-core
+    spec:
+      containers:
+      - name: command-core
+        image: ghcr.io/project-death-star/death-star-command-core:main # Placeholder, will be updated by CI/CD
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10

@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: death-star-staging
+
+resources:
+  - ./apps/command-core/deployment.yaml
+  - ./apps/command-core/service.yaml
+  - ./apps/bridge-ui/deployment.yaml
+  - ./apps/bridge-ui/service.yaml
